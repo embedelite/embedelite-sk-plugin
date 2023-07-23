@@ -3,9 +3,7 @@ from semantic_kernel.connectors.ai.open_ai import (
     OpenAITextCompletion,
     AzureTextCompletion,
 )
-from plugins.MathPlugin.MathPlugin import MathPlugin
-from plugins.OrchestratorPlugin.OrchestratorPlugin import OrchestratorPlugin
-
+from plugins.EmbedElitePlugin.EmbedElitePlugin import EmbedElitePlugin
 
 async def main():
     # Initialize the kernel
@@ -27,26 +25,18 @@ async def main():
     pluginsDirectory = "./plugins"
 
     # Import the semantic functions
-    kernel.import_semantic_skill_from_directory(pluginsDirectory, "OrchestratorPlugin")
-    kernel.import_semantic_skill_from_directory(pluginsDirectory, "SummarizeSkill")
+    kernel.import_semantic_skill_from_directory(pluginsDirectory, "EmbedElitePlugin")
 
-    # Import the native functions
-    mathPlugin = kernel.import_skill(MathPlugin(), "MathPlugin")
-    orchestratorPlugin = kernel.import_skill(
-        OrchestratorPlugin(kernel), "OrchestratorPlugin"
+    # Import the EmbedElite Plugin
+    embedElitePlugin = kernel.import_skill(
+        EmbedElitePlugin(), "EmbedElitePlugin"
     )
 
-    # Make a request that runs the Sqrt function
-    result1 = await orchestratorPlugin["route_request"].invoke_async(
-        "What is the square root of 634?"
+    # Call EmbedElitePlugin to fetch embeddings
+    embeddings = await embedElitePlugin["get_embeddings"].invoke_async(
+        "Some text to embed."
     )
-    print(result1["input"])
-
-    # Make a request that runs the Add function
-    result2 = await orchestratorPlugin["route_request"].invoke_async(
-        "What is 42 plus 1513?"
-    )
-    print(result2["input"])
+    print(embeddings["output"])
 
 
 # Run the main function
