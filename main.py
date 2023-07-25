@@ -32,11 +32,11 @@ async def main():
         EmbedElitePlugin(), "EmbedElitePlugin"
     )
 
-    # Call EmbedElitePlugin to fetch embeddings
-    embeddings = await embedElitePlugin["semantic_search_query"].invoke_async(
-        "Some text to embed."
+    # Call EmbedElitePlugin to fetch responses from EmbedElite API
+    response = embedElitePlugin["semantic_search_query"].invoke(
+        "What are the VAT rules in Germany if you sell services?"
     )
-    print(embeddings.result)
+    print(response.result)
 
 
 # Run the main function
