@@ -12,7 +12,7 @@
 
 # SK Hackathon EmbedElite Plugin
 
-This project is creating a plugin for the EmbedElite marketplace for the SK Hackathon. The plugin facilitates fetching ready-made premium context based on embeddings via an API.
+This project is creating a plugin for the EmbedElite marketplace for the SK Hackathon. The Sementic Kernel plugin facilitates fetching ready-made premium context based on embeddings via an API.
 
 # About EmbedElite
 
