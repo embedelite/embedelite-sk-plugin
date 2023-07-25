@@ -1,14 +1,24 @@
 import requests
+import json
+import os
 from semantic_kernel.skill_definition import (
     sk_function,
     sk_function_context_parameter,
 )
 from semantic_kernel.orchestration.sk_context import SKContext
 
-def send_request(code, client_id):
-    url = f"https://api.embedelite.com/query"
+def send_request(collection_name, query):
+    url = "https://api.embedelite.com/query"
+    headers = {
+        "API-Key": os.getenv("EMBEDELITE_API_KEY"),
+        "Content-Type": "application/json",
+    }
+    data = {
+        "query": query,
+        "collection_name": collection_name,
+    }
     
-    response = requests.get(url)
+    response = requests.post(url, headers=headers, data=json.dumps(data))
     
     if response.status_code == 200:
         # Consider any status other than 2xx an error
@@ -21,24 +31,16 @@ def send_request(code, client_id):
 
 class EmbedElitePlugin:
     @sk_function(
-        description="Takes the square root of a number",
-        name="square_root",
-        input_description="The value to take the square root of",
-    )
-    def square_root(self, number: str) -> str:
-        return str(math.sqrt(float(number)))
-
-    @sk_function(
-        description="Adds two numbers together",
-        name="add",
+        description="Receive context from an text embedding",
+        name="semantic_search_query",
     )
     @sk_function_context_parameter(
-        name="input",
-        description="The first number to add",
+        name="collection_name",
+        description="Name of the collection to query",
     )
     @sk_function_context_parameter(
-        name="number2",
-        description="The second number to add",
+        name="query",
+        description="The query for the embedding",
     )
-    def VAT_suggestion(self, context: SKContext) -> str:
-        return send_request(None, None)
+    def semantic_search_query(self, context: SKContext) -> str:
+        return send_request(context.get("collection_name"), context.get("query"))
