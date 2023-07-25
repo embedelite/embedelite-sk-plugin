@@ -12,7 +12,7 @@
 
 # SK Hackathon EmbedElite Plugin
 
-This project is creating a plugin for the EmbedElite marketplace for the SK Hackathon. The plugin facilitates fetching ready-made premium embeddings via an API.
+This project is creating a plugin for the EmbedElite marketplace for the SK Hackathon. The plugin facilitates fetching ready-made premium context based on embeddings via an API.
 
 # About EmbedElite
 
@@ -59,8 +59,8 @@ curl -X POST https://api.embedelite.com/query \
 -H "API-Key: sk-ee-9m839d3n98nh39fh9f3mhe98h3" \
 -H "Content-Type: application/json" \
 -d '{
-  "query": "How much does GitHub Copilot cost?",
-  "product_id": "PRODUCT_sdlkj343k9u34x9f9",
+  "query": "What are the VAT rules in Germany if I sell services?",
+  "product_id": "vat-rules-eu",
   "rag_id": "RAG_aks298msd9nj34hncs",
   "price_floor": 1.0,
   "price_cap": 5.0,
@@ -71,10 +71,11 @@ curl -X POST https://api.embedelite.com/query \
 Response Example:
 ```json
 {
-  "response": "GitHub Copilot costs $100.00/year.",
+  "response": "If you sell services in Germany, you usually charge the German VAT rate of 19%. However, there are exceptions for broadcasting, telecommunication, and electronically-supplied services, which must be charged at the VAT rate of the customer's country. If your customer is in another EU country, your invoice must contain specific information, such as the customer's name and address, the date of the invoice, the VAT rate, and the total amount including VAT. If your customer is outside the European Union, you must not charge VAT.",
+  "updated_at": "2023-07-25"
   "currency": "EUR",
   "paid": 2.3,
-  "originalQuery": "How much does GitHub Copilot cost?",
+  "originalQuery": "What are the VAT rules in Germany if I sell services?",
   "price_cap": 2.3,
   "price_floor": 2.3,
 }
