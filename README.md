@@ -10,9 +10,13 @@
 
 <br>
 
+> 🥳 We are among the winners of the SK Hackathon! Thanks to the SK Team and community for your interest and votes. We have to blacklist the API key used in this repo. Also we are going to refine our plugin/provide more integration examples soon. If you would like to get access to our API or discover more embeddings/RAG solutions, please check our website [https://www.embedelite.com]([linkurl](https://www.embedelite.com))
+
+
 # SK Hackathon EmbedElite Plugin
 
 This project is creating a plugin for the EmbedElite marketplace for the SK Hackathon. The Sementic Kernel plugin facilitates fetching ready-made premium context based on embeddings via an API.
+
 
 # About EmbedElite
 
